@@ -60,26 +60,36 @@ if(isset($_SESSION['user_data'])){
   <!-- error message end  -->
 <?php
 include 'partials/_footer.php';
-
 if(isset($_POST['login_btn'])){
   $email = mysqli_real_escape_string($conn,$_POST['email']);
   $password = mysqli_real_escape_string($conn,$_POST['password']);
 
-  // select query for checking email and password is correct or not 
+  // convert entered password to sha1
+  $password = sha1($password);
+
+  // select query
   $sql = "SELECT * FROM user WHERE email = '$email' AND password ='$password'";
   $result = mysqli_query($conn,$sql);
   $data = mysqli_num_rows($result);
-  if($data>0){
+
+  if($data > 0){
     $row = mysqli_fetch_assoc($result);
-    // make an array for session 
-    $user_data = array("user_id"=>$row['user_id'], "user_name"=>$row['username'], "role"=>$row['role']);
-    
-    // store array in session 
+
+    // session array
+    $user_data = array(
+      "user_id"=>$row['user_id'],
+      "user_name"=>$row['username'],
+      "role"=>$row['role']
+    );
+
     $_SESSION['user_data'] = $user_data;
+
     header("location:index.php");
+    exit;
   }else{
     $_SESSION['error'] = "invalid email/password";
     header("location:login.php");
+    exit;
   }
 }
 

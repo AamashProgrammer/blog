@@ -94,10 +94,12 @@ CREATE TABLE `user` (
 --
 -- Dumping data for table `user`
 --
+--
 
 INSERT INTO `user` (`user_id`, `username`, `email`, `password`, `role`) VALUES
-(1, 'test', 'test@test.test', '6a2b3fa376eaaefa628ba0e36b601bb1adab5658', 1),
-(2, 'sohaib', 'sohaib@email.com', '7cfbd5ffe8387b92342e5877d522a9d3f46a13da', 0);
+(1, 'test', 'test@test.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1),
+(2, 'sohaib', 'sohaib@email.com', '7cfbd5ffe8387b92342e5877d522a9d3f46a13da', 0),
+(3, 'test', 'test@test.test', 'd033e22ae348aeb5660fc2140aec35850c4da997', 0);
 
 --
 -- Indexes for dumped tables
